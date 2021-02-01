@@ -10,12 +10,12 @@
                 >
             </label>
         </td>
-        <td @click="editTaskNumber">
+        <td @click="editNumber">
             {{item.number}}
-            <div v-if="changeInputTdNumber === true">
+            <div v-if="formChange.number === true">
                 <input type="text" v-model="newTextNumber">
                 <button 
-                    @click.stop="changeTdNumber" 
+                    @click.stop="changeNumber" 
                     class="btn btn-primary"
                 >
                     Изменить
@@ -25,10 +25,10 @@
 
         <td @click="editTaskName">
             {{item.name}}
-            <div v-if="changeInputTdName === true">
+            <div v-if="formChange.name === true">
                 <input type="text" v-model="newTextName">
                 <button 
-                    @click.stop="changeTdName" 
+                    @click.stop="changeName" 
                     class="btn btn-primary"
                 >
                     Изменить
@@ -36,11 +36,11 @@
             </div>
         </td>
 
-        <td @click="editTaskData">{{item.data}}
-            <div v-if="changeInputTdData === true">
+        <td @click="editData">{{item.data}}
+            <div v-if="formChange.data === true">
                 <input type="text" v-model="newTextData">
                 <button 
-                    @click.stop="changeTdData" 
+                    @click.stop="changeData" 
                     class="btn btn-primary"
                 >
                     Изменить
@@ -62,12 +62,14 @@ export default {
         return {
             checkedP: false,
             selected: 'false',
-            changeInputTdNumber: false,
-            changeInputTdName: false,
-            changeInputTdData: false,
             newTextNumber: '',
             newTextName: '',
             newTextData: '',
+            formChange: {
+                number: false,
+                name: false,
+                data: false
+            }
         }
     },  
     computed: {
@@ -86,35 +88,35 @@ export default {
 
         },
 
-        editTaskNumber () {
+        editNumber () {
             this.newTextNumber = this.item.number
-            this.changeInputTdNumber = true
+            this.formChange.number = true
 
         },
 
-        changeTdNumber () {
+        changeNumber () {
             this.item.number = this.newTextNumber
-            this.changeInputTdNumber = false
+            this.formChange.number = false
         },
 
         editTaskName () {
             this.newTextName = this.item.name
-            this.changeInputTdName = true
+            this.formChange.name = true
         },
 
-        changeTdName () {
+        changeName () {
             this.item.name = this.newTextName
-            this.changeInputTdName = false
+            this.formChange.name = false
         },
 
-        editTaskData () {
+        editData () {
             this.newTextData = this.item.data
-            this.changeInputTdData = true
+            this.formChange.data = true
         },
 
-        changeTdData () {
+        changeData () {
             this.item.data = this.newTextData
-            this.changeInputTdData = false
+            this.formChange.data = false
         }
     }
 }

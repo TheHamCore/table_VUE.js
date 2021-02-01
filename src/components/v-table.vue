@@ -1,24 +1,24 @@
 <template>
     <div class="container">
         <div class="card">
-            <div class="card_all">
+            <div class="card_select">
                 <label class="form-checkbox">
                     <input 
                         type="checkbox" 
                         v-model="selectAll" 
                         @click="select"
-                        class="choiceAll"
+                        class="choice_all_selected"
                     >
-                        <span class="select">Select all</span>
+                        <span class="select">Выбрать всё</span>
                 </label>
             </div>
 
-            <div class="choiceSelect">
+            <div class="card_option">
                 <select 
                     v-model="selectedStatus" 
                     :disabled="isLength" 
                     @change="changeStatus" 
-                    class="sel"
+                    class="option_style"
                 >
                     <option 
                         v-for="status in statuses" 
@@ -125,7 +125,7 @@ export default {
 
         sortByNubmerToDown () {
             this.PRODUCTS.sort((a, b) => a.number - b.number)
-            console.log(this.PRODUCTS)
+
         },
 
         sortByNubmerToUp () {
@@ -136,6 +136,7 @@ export default {
             this.PRODUCTS.sort((a, b) => a.name.localeCompare(b.name))
 
         },
+
         sortByNameToUp () {
             this.PRODUCTS.sort((a, b) => b.name.localeCompare(a.name))
         },
@@ -182,14 +183,14 @@ export default {
         background: #2c3e50;
         border: none;
     }
-    .card_all {
+    .card_select {
         margin-top: 30px
     }
     .material-icons:hover {
         cursor: pointer;
         color: red
     }
-    .choiceAll {
+    .choice_all_selected {
         margin-left: 30px;
         cursor: pointer;
         align-items: center;
@@ -203,11 +204,11 @@ export default {
         color: white;
         border: none;
     }
-    .choiceSelect {
+    .card_option {
         display: absolute;
         margin-bottom: 40px;
     }
-    .sel {
+    .option_style {
         color: black;
         margin-left: 1600px;
         border: 1px black solid;
