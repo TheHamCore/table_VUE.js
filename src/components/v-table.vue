@@ -72,6 +72,10 @@
                     :item="item"
                     v-model="checked"
                 >
+                <!-- :selected-items="checked" -->
+                    <!-- @qwe="onQwe" -->
+                <!-- :value="checked" -->
+                    <!-- @input="checked=$event" -->
                 </v-table-row>
             </tbody>
         </table>        
@@ -110,7 +114,9 @@ export default {
                 }
             }
         },
-
+        // onQwe(arg1){
+        //     this.checked = arg1;
+        // },
         changeStatus () {
             let newProducts = this.PRODUCTS.map((product) => {
                 if (this.checked.includes(product.number)) {

@@ -4,9 +4,8 @@
             <label>
                 <input 
                     type="checkbox" 
-                    v-model="checked"
+                    v-model="myChecked"
                     :value="item.number"
-                    @change="onChange"
                 >
             </label>
         </td>
@@ -60,7 +59,7 @@ export default {
     props: ['value','item'],
     data () {
         return {
-            checkedP: false,
+            myChecked: this.value,
             selected: 'false',
             newTextNumber: '',
             newTextName: '',
@@ -72,22 +71,26 @@ export default {
             }
         }
     },  
-    computed: {
-        checked: {
-            get() {
-                return this.value
-            },
-            set(val) {
-                this.checkedP = val
-            }
+    watch: {
+        myChecked (newValue){
+            this.$emit('input', newValue)
         },
+
+        value (newValue) {
+            this.myChecked = newValue;
+        }
     },
+    // computed: {
+    //     checked: {
+    //         get() {
+    //             return this.selectedItems
+    //         },
+    //         set(val) {
+    //             this.$emit('qwe', val);
+    //         }
+    //     },
+    // },
     methods: {
-        onChange () {
-            this.$emit('input', this.checkedP)
-
-        },
-
         editNumber () {
             this.newTextNumber = this.item.number
             this.formChange.number = true
@@ -117,8 +120,9 @@ export default {
         changeData () {
             this.item.data = this.newTextData
             this.formChange.data = false
-        }
-    }
+        },
+    },
+
 }
 </script>
 
